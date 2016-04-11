@@ -8,9 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import datviet.FlyBeau.R;
+
+//git remote add origin https://github.com/nthanhnambmt/Fly-Beau.git
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,7 +60,7 @@ public class RegisterFragment extends Fragment {
         btNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Next to pick the group", Toast.LENGTH_SHORT).show();
+                ((LoginActivity)getActivity()).loadFragment("pickgroup");
             }
 
         });

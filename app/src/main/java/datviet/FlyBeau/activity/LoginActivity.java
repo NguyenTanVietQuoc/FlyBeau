@@ -13,8 +13,9 @@ import java.util.List;
 import datviet.FlyBeau.R;
 
 public class LoginActivity extends AppCompatActivity {
+// dfdsf
+//git remote add origin https://github.com/nthanhnambmt/FlyBeau.git
 //
-
     public static String tag = "loi";
     private SectionsPagerAdapter adapter;
     FrameLayout flContainer;
@@ -43,6 +44,9 @@ public class LoginActivity extends AppCompatActivity {
 
         RegisterFragment register = new RegisterFragment();
         adapter.addFragment(register, "register");
+
+        PickGroupFragment group = new PickGroupFragment();
+        adapter.addFragment(group, "group");
 
         getSupportFragmentManager()
                 .beginTransaction()
@@ -116,7 +120,7 @@ public class LoginActivity extends AppCompatActivity {
                             .commit();
                     loginShowing = false;
                     break;
-                case "alpha":
+                case "pickgroup":
                     getSupportFragmentManager()
                             .beginTransaction()
                             .setCustomAnimations
