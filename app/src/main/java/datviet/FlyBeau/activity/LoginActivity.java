@@ -13,8 +13,8 @@ import java.util.List;
 import datviet.FlyBeau.R;
 
 public class LoginActivity extends AppCompatActivity {
-// dfdsf
-//git remote add origin https://github.com/nthanhnambmt/FlyBeau2.git
+// 
+//git remote add origin https://github.com/nthanhnambmt/FlyBeau.git
 //
     public static String tag = "loi";
     private SectionsPagerAdapter adapter;
