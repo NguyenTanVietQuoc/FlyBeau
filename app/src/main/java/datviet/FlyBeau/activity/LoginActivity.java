@@ -7,15 +7,14 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.FrameLayout;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
 import datviet.FlyBeau.R;
 
 public class LoginActivity extends AppCompatActivity {
-// 
-//git remote add origin https://github.com/nthanhnambmt/FlyBeau.git
-//
+
     public static String tag = "loi";
     private SectionsPagerAdapter adapter;
     FrameLayout flContainer;
@@ -25,7 +24,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         flContainer = (FrameLayout) findViewById(R.id.container);
 
 
@@ -47,6 +45,9 @@ public class LoginActivity extends AppCompatActivity {
 
         PickGroupFragment group = new PickGroupFragment();
         adapter.addFragment(group, "group");
+
+        HomeFragment home = new HomeFragment();
+        adapter.addFragment(home, "home");
 
         getSupportFragmentManager()
                 .beginTransaction()
@@ -131,7 +132,7 @@ public class LoginActivity extends AppCompatActivity {
                             .commit();
                     loginShowing = false;
                     break;
-                case "bubble":
+                case "home":
                     getSupportFragmentManager()
                             .beginTransaction()
                             .setCustomAnimations

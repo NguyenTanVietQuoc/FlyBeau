@@ -19,44 +19,47 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Locale;
 
 import datviet.FlyBeau.R;
-import datviet.FlyBeau.model.Group;
-import datviet.FlyBeau.view.adapter.PickGroupAdapter;
-
+import datviet.FlyBeau.model.Home;
+import datviet.FlyBeau.view.adapter.HomeAdpater;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PickGroupFragment extends Fragment {
-
+public class HomeFragment extends Fragment {
     ListView lvGroup;
     ImageView imgMicro;
     SearchView searchView;
     SwipeRefreshLayout swipeRefresh;
     FloatingActionButton fab;
     Snackbar snackbar;
-    PickGroupAdapter adapter;
-    ArrayList<Group> lstGroup;
+    HomeAdpater adapter;
+    ArrayList<Home> lstHome;
     final int VOICE_RECOGNITION = 222;
 
-    public PickGroupFragment() {
+    private TextView stickyView;
+    private View heroImageView;
+    private View stickyViewSpacer;
 
+    public HomeFragment() {
+        // Required empty public constructor
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_pick_group, container, false);
+        View v = inflater.inflate(R.layout.fragment_home, container, false);
         init(v);
         snackbar = Snackbar.make(v, "Chọn một trường bạn muốn tham gia", Snackbar.LENGTH_LONG)
                 .setAction("Action", null);
-        snackbar.show();
+
         return v;
     }
 
@@ -83,8 +86,18 @@ public class PickGroupFragment extends Fragment {
         imgMicro = (ImageView) v.findViewById(R.id.imgMicro_BC);
         searchView = (SearchView) v.findViewById(R.id.searchView);
 
-        lvGroup.setOnScrollListener(onScrollListener());
+        heroImageView = v.findViewById(R.id.heroImageView);
+        stickyView = (TextView) v.findViewById(R.id.stickyView);
 
+        /* Inflate list header layout */
+        LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View listHeader = inflater.inflate(R.layout.header_listview_home, null);
+        stickyViewSpacer = listHeader.findViewById(R.id.stickyViewPlaceholder);
+
+        /* Add list view header */
+        lvGroup.addHeaderView(listHeader);
+
+        lvGroup.setOnScrollListener(onScrollListener());
 
         searchView.setIconifiedByDefault(false);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -135,11 +148,11 @@ public class PickGroupFragment extends Fragment {
     }
 
     private void setListViewAdapter() {
-        lstGroup = new ArrayList<>();
+        lstHome = new ArrayList<>();
 
         taoDuLieu();
 
-        adapter = new PickGroupAdapter(getActivity(), lstGroup);
+        adapter = new HomeAdpater(getActivity(), lstHome);
         lvGroup.setAdapter(adapter);
         lvGroup.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -147,8 +160,8 @@ public class PickGroupFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 // TODO Auto-generated method stub
-                Toast.makeText(getActivity(), lstGroup.get(position).groupName, Toast.LENGTH_LONG).show();
-                ((LoginActivity)getActivity()).loadFragment("home");
+                if(position != 0)
+                    Toast.makeText(getActivity(), lstHome.get(position - 1).name, Toast.LENGTH_LONG).show();
             }
         });
 
@@ -156,28 +169,43 @@ public class PickGroupFragment extends Fragment {
 
     public void taoDuLieu()
     {
-        Group a = new Group("Viet Nam National University", "1000", R.drawable.a);
-        Group b = new Group("Ho Chi Minh City University", "2000", R.drawable.b);
-        Group c = new Group("Can Tho University", "3000", R.drawable.c);
-        Group d = new Group("Hanoi Medical University", "4000", R.drawable.a);
-        Group e = new Group("Hue College of Medicine", "5000", R.drawable.b);
-        Group f = new Group("Thai Nguyen University", "6000", R.drawable.c);
-        Group g = new Group("Hanoi University of Mining and Geology", "7000", R.drawable.a);
-        Group h = new Group("Da Nang University of Economics ", "8000", R.drawable.b);
-        Group i = new Group("Ho Chi Minh City University of Science ", "9000", R.drawable.c);
-        Group j = new Group("Viet Nam National University", "11000", R.drawable.a);
-        Group k = new Group("Ho Chi Minh City University of Technology", "12000", R.drawable.b);
-        lstGroup.add(a);
-        lstGroup.add(b);
-        lstGroup.add(c);
-        lstGroup.add(d);
-        lstGroup.add(e);
-        lstGroup.add(f);
-        lstGroup.add(g);
-        lstGroup.add(h);
-        lstGroup.add(i);
-        lstGroup.add(j);
-        lstGroup.add(k);
+        Home a = new Home("Viet Nam National University", "1000", R.drawable.rsz_ha, R.drawable.facea);
+        Home b = new Home("Ho Chi Minh City University", "2000", R.drawable.rsz_hb, R.drawable.rsz_faceb);
+        Home c = new Home("Can Tho University", "3000", R.drawable.rsz_1hc, R.drawable.facec);
+        Home d = new Home("Hanoi Medical University", "4000", R.drawable.hd, R.drawable.facea);
+        Home e = new Home("Hue College of Medicine", "5000", R.drawable.he, R.drawable.rsz_faceb);
+        Home f = new Home("Thai Nguyen University", "6000", R.drawable.hf, R.drawable.facec);
+        Home g = new Home("Hanoi University of ", "7000", R.drawable.rsz_ha, R.drawable.facea);
+        Home h = new Home("Da Nang University ", "8000", R.drawable.rsz_hb, R.drawable.rsz_faceb);
+        Home i = new Home("Ho Chi Minh City Uni ", "9000", R.drawable.rsz_1hc, R.drawable.facec);
+        Home j = new Home("Viet Nam National ", "11000", R.drawable.hd, R.drawable.facea);
+        Home k = new Home("Ho Chi Minh City Unive", "12000", R.drawable.he, R.drawable.rsz_faceb);
+        Home hh = new Home("Da Nang University ", "8000", R.drawable.rsz_hb, R.drawable.rsz_faceb);
+        Home ii = new Home("Ho Chi Minh City Uni ", "9000", R.drawable.rsz_1hc, R.drawable.facec);
+        Home jj = new Home("Viet Nam National ", "11000", R.drawable.hd, R.drawable.facea);
+        Home kk = new Home("Ho Chi Minh City Unive", "12000", R.drawable.he, R.drawable.rsz_faceb);
+
+        lstHome.add(a);
+        lstHome.add(b);
+        lstHome.add(c);
+        lstHome.add(d);
+        lstHome.add(e);
+        lstHome.add(f);
+        lstHome.add(g);
+        lstHome.add(h);
+        lstHome.add(i);
+        lstHome.add(j);
+        lstHome.add(k);
+        lstHome.add(hh);
+        lstHome.add(ii);
+        lstHome.add(jj);
+        lstHome.add(kk);
+
+        for(int x = 0; x < 5000; x++)
+        {
+            Home m = new Home("Ho Chi Minh City Uni ", "9000", R.drawable.rsz_1hc, R.drawable.facec);
+            lstHome.add(m);
+        }
     }
 
     //Load more data khi scroll đến item cuối
@@ -190,11 +218,26 @@ public class PickGroupFragment extends Fragment {
                 if (scrollState == SCROLL_STATE_IDLE) {
                     //position item cuối đang hiển thị mà bằng tổng số item lst thì load
                 }
+
+
             }
 
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
                                  int totalItemCount) {
+                if (lvGroup.getFirstVisiblePosition() == 0) {
+                    View firstChild = lvGroup.getChildAt(0);
+                    int topY = 0;
+                    if (firstChild != null) {
+                        topY = firstChild.getTop();
+                    }
+
+                    int heroTopY = stickyViewSpacer.getTop();
+                    stickyView.setY(Math.max(0, heroTopY + topY));
+
+                    /* Set the image to scroll half of the amount that of ListView */
+                    heroImageView.setY(topY * 0.5f);
+                }
             }
 
         };
