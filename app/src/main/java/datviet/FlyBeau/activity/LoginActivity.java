@@ -14,7 +14,7 @@ import datviet.FlyBeau.R;
 
 public class LoginActivity extends AppCompatActivity {
 
-    public static String tag = "loi";
+    public static String tag = "loi"; ///test 18/04
     private SectionsPagerAdapter adapter;
     FrameLayout flContainer;
     boolean loginShowing = true;
