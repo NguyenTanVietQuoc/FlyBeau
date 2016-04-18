@@ -39,7 +39,7 @@ public class HomeAdpater extends BaseAdapter {
 
     class Holder {
         ImageView iv, avatar;
-        TextView tvGroupName;
+        TextView tvGroupName, tvFrom, tvDes, tvTime;
     }
 
     @Override
@@ -72,12 +72,18 @@ public class HomeAdpater extends BaseAdapter {
             holder.iv = (ImageView) convertView.findViewById(R.id.imgHome);
             holder.avatar = (ImageView) convertView.findViewById(R.id.avatar);
             holder.tvGroupName = (TextView) convertView.findViewById(R.id.tvGroupName);
+            holder.tvFrom = (TextView) convertView.findViewById(R.id.tvFrom);
+            holder.tvDes = (TextView) convertView.findViewById(R.id.tvDescrip);
+            holder.tvTime = (TextView) convertView.findViewById(R.id.tvTime);
             convertView.setTag(holder);
 
         } else {
             holder = (Holder) convertView.getTag();
         }
         holder.tvGroupName.setText(lstHome.get(position).name);
+        holder.tvFrom.setText("from " + lstHome.get(position).group);
+        holder.tvDes.setText(lstHome.get(position).descrip);
+        holder.tvTime.setText(lstHome.get(position).time + " hours ago");
 //        Picasso.with(context)
 //                .load(lstHome.get(position).avatarSRC)
 //                .transform(new RoundedTransformation(100, 0))

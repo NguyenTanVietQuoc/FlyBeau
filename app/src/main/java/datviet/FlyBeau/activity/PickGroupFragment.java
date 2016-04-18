@@ -10,6 +10,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,7 +71,7 @@ public class PickGroupFragment extends Fragment {
     public void init(View v)
     {
 
-        FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.fab);
+        fab = (FloatingActionButton) v.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -191,10 +192,25 @@ public class PickGroupFragment extends Fragment {
                     //position item cuối đang hiển thị mà bằng tổng số item lst thì load
                 }
             }
-
+            private int prevVisibleItem = 0;
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
                                  int totalItemCount) {
+                if(prevVisibleItem != firstVisibleItem) {
+                    if (prevVisibleItem < firstVisibleItem) {
+                        //ScrollDown
+                        fab.setVisibility(View.GONE);
+                        Log.d(LoginActivity.tag, "ScrollDown");
+                    }
+
+                    else
+                    {
+                        //ScrollUp
+                        fab.setVisibility(View.VISIBLE);
+                        Log.d(LoginActivity.tag, "ScrollUp");
+                    }
+                    prevVisibleItem = firstVisibleItem;
+                }
             }
 
         };

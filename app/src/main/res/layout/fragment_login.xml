@@ -100,7 +100,8 @@
                 android:textColor="@android:color/white"
                 android:background="@drawable/custom_button"
                 android:text="@string/bt_Register"
-                android:id="@+id/btRegister" />
+                android:id="@+id/btRegister"
+                />
         </LinearLayout>
     </RelativeLayout>
 

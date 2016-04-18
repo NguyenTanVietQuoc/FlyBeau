@@ -15,7 +15,7 @@ public class BitmapBorderTransformation implements com.squareup.picasso.Transfor
     private int mBorderSize;
     private int mCornerRadius = 0;
     private int mColor;
-    int a;
+
     public BitmapBorderTransformation(int borderSize, int color) {
         this.mBorderSize = borderSize;
         this.mColor = color;

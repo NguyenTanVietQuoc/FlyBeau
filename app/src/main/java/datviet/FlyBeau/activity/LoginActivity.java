@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.FrameLayout;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +24,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         flContainer = (FrameLayout) findViewById(R.id.container);
-
 
         setupAdapter();
 
@@ -139,6 +137,7 @@ public class LoginActivity extends AppCompatActivity {
                                     (R.anim.slide_in_right, R.anim.slide_out_left,
                                             R.anim.slide_in_left, R.anim.slide_out_right)
                             .replace(R.id.container, adapter.getItem(3))
+//                            .replace(R.id.container, new HomeFragment())
                             .addToBackStack(null)
                             .commit();
                     loginShowing = false;
@@ -159,3 +158,4 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 }//END
+
