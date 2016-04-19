@@ -43,6 +43,7 @@ public class HomeFragment extends Fragment {
     private TextView stickyView;
     private View heroImageView;
     private View stickyViewSpacer;
+    CircularFloating circularFloating;
 
     ArrayList<Home> lstHome;
     final int VOICE_RECOGNITION = 222;
@@ -112,6 +113,9 @@ public class HomeFragment extends Fragment {
                 snackbar.show();
             }
         });
+
+        circularFloating = new CircularFloating(v.getContext());
+        circularFloating.createCircularFloating();
 
         swipeRefresh = (SwipeRefreshLayout) v.findViewById(R.id.swipeContainer);
         lvGroup = (ListView) v.findViewById(R.id.lvPickGroup);
@@ -263,6 +267,7 @@ public class HomeFragment extends Fragment {
                 if (prevVisibleItem != firstVisibleItem) {
                     if (prevVisibleItem < firstVisibleItem) {
                         //ScrollDown
+
                         fab.setVisibility(View.GONE);
                         Log.d(LoginActivity.tag, "ScrollDown");
                     } else {

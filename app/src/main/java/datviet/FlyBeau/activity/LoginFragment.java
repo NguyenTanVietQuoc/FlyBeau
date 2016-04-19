@@ -1,5 +1,6 @@
 package datviet.FlyBeau.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -58,7 +59,7 @@ public class LoginFragment  extends Fragment{
         btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Login", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getContext(),MainActivity.class));
             }
 
         });
