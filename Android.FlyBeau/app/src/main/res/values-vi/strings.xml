@@ -1,0 +1,24 @@
+<resources>
+    <!--String-->
+    <string name="app_name">Flying Beauties</string>
+    <string name="bt_Login">Đăng nhập</string>
+    <string name="bt_Register">Đăng kí</string>
+    <string name="et_User">Tài khoản</string>
+    <string name="et_FullName">Họ và tên</string>
+    <string name="et_Email">Email</string>
+    <string name="et_City">Thành phố</string>
+    <string name="et_Country">Quốc gia</string>
+    <string name="et_Pass">Mật khẩu</string>
+    <string name="bt_next">Tiếp tục</string>
+    <string name="string_Register">Đăng kí</string>
+
+    <!--Tab user-->
+    <string name="account">Tài khoản</string>
+    <string name="my_competition">Cuộc thi đã tham gia</string>
+    <string name="rating">Đánh giá</string>
+    <string name="total_picture">Hình</string>
+    <string name="total_point">Điểm</string>
+    <string name="upload_images">Đăng ảnh</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Hủy</string>
+</resources>
