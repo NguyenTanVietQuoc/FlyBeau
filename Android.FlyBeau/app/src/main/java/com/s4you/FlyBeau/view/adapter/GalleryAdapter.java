@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.s4you.FlyBeau.R;
 import com.squareup.picasso.Picasso;
@@ -35,9 +35,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.tv_android.setText("Hình: " + position);
-
-        Picasso.with(context).load(lstURL.get(position)).resize(120, 60).into(holder.img_android);
+        Picasso.with(context).load(lstURL.get(position)).into(holder.imgGallery);
     }
 
     @Override
@@ -45,14 +43,19 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
         return lstURL.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView tv_android;
-        ImageView img_android;
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        ImageView imgGallery;
         public ViewHolder(View view) {
             super(view);
+            view.setOnClickListener(this);
+            imgGallery = (ImageView)view.findViewById(R.id.imgGallery);
 
-            tv_android = (TextView)view.findViewById(R.id.tv_android);
-            img_android = (ImageView)view.findViewById(R.id.img_android);
         }
-    }
+
+
+        @Override
+        public void onClick(View v) {
+            Toast.makeText(context, "Position: " + getPosition(), Toast.LENGTH_SHORT).show();
+        }
+    }//END ViewHolder
 }//END
